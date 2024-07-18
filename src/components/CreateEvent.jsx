@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import eventImage from "../assets/Images/12.jpg";
+import eventImage from "../assets/images/12.jpg";
 import { FaUpload } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 
