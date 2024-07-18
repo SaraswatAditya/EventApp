@@ -4,6 +4,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaUpload } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 const EditEvent = () => {
   const { id } = useParams();
@@ -63,6 +64,9 @@ const EditEvent = () => {
     }),
     onSubmit: async (values) => {
       try {
+        toast("Please Wait !", {
+          icon: "⏳",
+        });
         const formData = new FormData();
         Object.keys(values).forEach((key) => {
           formData.append(key, values[key]);
@@ -100,6 +104,7 @@ const EditEvent = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
+      <Toaster position="top-center" reverseOrder={true} />
       <h1 className="text-2xl font-bold mb-4">Edit Event</h1>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="relative">
@@ -109,7 +114,7 @@ const EditEvent = () => {
           >
             <img
               src={
-                preview || `${import.meta.env.VITE_SERVER_DOMAIN}${eventImage}`
+                preview || eventImage
               }
               className="h-40 w-full object-cover rounded-md"
               alt="Event"

@@ -5,16 +5,19 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useAnimations } from "@react-three/drei";
 import Footer from "./Footer";
 import { useSelector } from "react-redux";
+import Tech from "../assets/Tech.jpg";
+import Music from "../assets/Music.jpg";
+import Art from "../assets/Art.jpg";
 
 // Component for the 3D model with animation
 const ExhibitionBooth = () => {
   const group = useRef();
-  const { scene, animations } = useGLTF("exhibition-booth-model.glb"); // Ensure to replace with the actual path to your model
+  const { scene, animations } = useGLTF("exhibition-booth-model.glb"); // actual path to model
   const { actions } = useAnimations(animations, group);
 
   useFrame(() => {
     if (actions) {
-      actions["Animation"].play(); // Replace with the name of the animation
+      actions["Animation"].play(); //  name of the animation
     }
   });
 
@@ -123,65 +126,98 @@ const HomePage = () => {
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img
-                  src="https://via.placeholder.com/400x300"
+                  src={Tech}
                   alt="Event"
                   className="h-40 w-full object-cover rounded-lg mb-4"
                 />
-                <h3 className="text-xl font-bold mb-2">Event Name</h3>
+                <h3 className="text-xl font-bold mb-2">Tech Expo</h3>
                 <p className="text-gray-700 mb-4">
-                  Brief description of the event goes here.
+                  Explore the latest in technology and innovation. This expo
+                  will feature cutting-edge tech displays, interactive
+                  workshops, and keynote speeches from industry leaders.
                 </p>
-                <Link
-                  to="/event/1"
-                  className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
-                >
-                  View Details
-                </Link>
+                {isAuthenticated ? (
+                  <Link
+                    to="/events"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                )}
               </div>
             </div>
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img
-                  src="https://via.placeholder.com/400x300"
+                  src={Music}
                   alt="Event"
                   className="h-40 w-full object-cover rounded-lg mb-4"
                 />
-                <h3 className="text-xl font-bold mb-2">Event Name</h3>
+                <h3 className="text-xl font-bold mb-2">Music Fest</h3>
                 <p className="text-gray-700 mb-4">
-                  Brief description of the event goes here.
+                  Join us for an unforgettable musical experience. Enjoy live
+                  performances from top artists across various genres, immersive
+                  soundscapes, and engaging activities for all music lovers.
                 </p>
-                <Link
-                  to="/event/1"
-                  className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
-                >
-                  View Details
-                </Link>
+                {isAuthenticated ? (
+                  <Link
+                    to="/events"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                )}
               </div>
             </div>
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img
-                  src="https://via.placeholder.com/400x300"
+                  src={Art}
                   alt="Event"
                   className="h-40 w-full object-cover rounded-lg mb-4"
                 />
-                <h3 className="text-xl font-bold mb-2">Event Name</h3>
+                <h3 className="text-xl font-bold mb-2"> Art Fair</h3>
                 <p className="text-gray-700 mb-4">
-                  Brief description of the event goes here.
+                  Discover stunning artworks from talented artists. The fair
+                  will showcase diverse art forms including paintings,
+                  sculptures, and digital art, along with artist talks and
+                  hands-on art workshops.
                 </p>
-                <Link
-                  to="/events/"
-                  className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
-                >
-                  View Details
-                </Link>
+                {isAuthenticated ? (
+                  <Link
+                    to="/events"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-blue-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-800"
+                  >
+                    View Details
+                  </Link>
+                )}
               </div>
             </div>
             {/* Repeat Event Card for more events */}
           </div>
         </div>
       </section>
-
       {/* Call to Action Section */}
       <section className="bg-blue-700 text-white py-20">
         <div className="container mx-auto text-center">

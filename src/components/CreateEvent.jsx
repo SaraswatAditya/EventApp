@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import eventImage from "../assets/Images/12.jpg";
 import { FaUpload } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
@@ -32,6 +33,9 @@ const CreateEvent = () => {
     }),
     onSubmit: async (values) => {
       try {
+        toast("Please Wait !", {
+          icon: "⏳",
+        });
         const formData = new FormData();
         formData.append("name", values.name);
         formData.append("description", values.description);
@@ -44,7 +48,6 @@ const CreateEvent = () => {
         if (file) {
           formData.append("image", file);
         }
-
         const token = localStorage.getItem("token");
         const response = await axios.post("/api/events/create", formData, {
           headers: {
@@ -52,8 +55,9 @@ const CreateEvent = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        navigate(`/events/${response.data._id}`);
+        navigate(`/events`);
       } catch (error) {
+        toast.error("Event creation failed");
         console.error("Error creating event:", error);
       }
     },
@@ -75,6 +79,7 @@ const CreateEvent = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
+      <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-2xl font-bold mb-4">Create Event</h1>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="relative">

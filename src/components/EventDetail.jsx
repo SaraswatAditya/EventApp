@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { FaShareAlt, FaMapMarkerAlt, FaClock } from "react-icons/fa";
-import { toast, Toaster } from "react-hot-toast";
 
 function EventDetail() {
   const { id } = useParams();
@@ -93,14 +92,13 @@ function EventDetail() {
 
   return (
     <div className="container mx-auto p-4">
-      <Toaster />
       <div className="border-2 mt-2 shadow-2xl rounded-md mb-2">
         <h1 className="ml-2 text-3xl font-bold mb-4 p-1">{event.name}</h1>
         {hostData && (
           <div className="flex items-center mb-5">
             <img
               className="ml-2 w-14 h-14 rounded-full mr-2"
-              src={`${import.meta.env.VITE_SERVER_DOMAIN}${hostData.image}`}
+              src={hostData.image}
               alt={hostData.username}
             />
             <div>
