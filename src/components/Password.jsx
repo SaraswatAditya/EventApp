@@ -16,7 +16,7 @@ function Password() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.auth.username);
   const { isLoading, apiData, serverError } = useSelector((state) => state.api);
-
+  // console.log(apiData?.image);
   useEffect(() => {
     if (username) {
       dispatch(fetchUserData(username));
@@ -70,9 +70,7 @@ function Password() {
           <form className="py-1" onSubmit={formik.handleSubmit}>
             <div className="profile flex justify-center py-4">
               <img
-                src={`${import.meta.env.VITE_SERVER_DOMAIN}${
-                      apiData?.image
-                    }` || avatar}
+                src={apiData?.image || avatar}
                 className={styles.profile_img}
                 alt="avatar"
               />

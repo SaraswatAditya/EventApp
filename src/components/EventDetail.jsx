@@ -8,7 +8,7 @@ function EventDetail() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [hostData, setHostData] = useState(null);
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
   const [hostUsername, setHostUsername] = useState(null);
 
   useEffect(() => {
@@ -45,12 +45,12 @@ function EventDetail() {
     }
   }, [hostUsername]);
 
-  useEffect(() => {
-    if (event && event.image) {
-      setImage(`${import.meta.env.VITE_SERVER_DOMAIN}${event.image}`);
-      // console.log("Image is ",image)
-    }
-  }, [event]);
+  // useEffect(() => {
+  //   if (event && event.image) {
+  //     setImage(`${import.meta.env.VITE_SERVER_DOMAIN}${event.image}`);
+  //     // console.log("Image is ",image)
+  //   }
+  // }, [event]);
 
   const handleShare = () => {
     const eventUrl = window.location.href;
@@ -115,7 +115,7 @@ function EventDetail() {
       <div className="flex flex-col md:flex-row md:space-x-1">
         <div className="flex-1">
           <img
-            src={image}
+            src={event.image}
             alt="Event"
             className="h-64 w-full md:w-3/3 hover:scale-105 transition-all duration-500 object-cover rounded-lg border-2 shadow-lg"
           />

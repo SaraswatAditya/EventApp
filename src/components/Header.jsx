@@ -55,7 +55,7 @@ function Header() {
             className="h-8"
             alt="EventLogo"
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">
+          <span className="self-center text-2xl py-1 font-semibold whitespace-nowrap dark:text-black">
             Event-App
           </span>
         </Link>
@@ -69,7 +69,7 @@ function Header() {
               >
                 <img
                   className="w-11 h-11 rounded-full"
-                  src={`${import.meta.env.VITE_SERVER_DOMAIN}${apiData?.image}`}
+                  src={apiData?.image}
                   alt={apiData?.username}
                 />
               </Link>
@@ -124,7 +124,7 @@ function Header() {
         </div>
 
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
+          className={`itemc justify-between w-full md:flex md:w-auto md:order-1 ${
             menuOpen ? "block" : "hidden"
           }`}
           id="navbar-user"

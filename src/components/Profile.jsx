@@ -105,12 +105,7 @@ function Profile() {
             <div className="profile flex justify-center py-4">
               <label htmlFor="profile">
                 <img
-                  src={
-                    preview ||
-                    file ||
-                    `${import.meta.env.VITE_SERVER_DOMAIN}${apiData?.image}` ||
-                    avatar
-                  }
+                  src={preview || apiData?.image || file || avatar}
                   className={`${styles.profile_img} ${extend.profile_img}`}
                   alt="avatar"
                 />
