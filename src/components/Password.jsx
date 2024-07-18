@@ -1,5 +1,4 @@
-// src/components/Password.jsx
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import avatar from "../assets/profile.png";
 import styles from "../styles/Username.module.css";
@@ -10,13 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../features/api/apiSlice";
 import { setUsername, setActive } from "../store/authSlice";
 import { verifyPassword } from "../helper/helper";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 function Password() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.auth.username);
   const { isLoading, apiData, serverError } = useSelector((state) => state.api);
-  // console.log(apiData?.image);
+
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
+
   useEffect(() => {
     if (username) {
       dispatch(fetchUserData(username));
@@ -75,13 +77,19 @@ function Password() {
                 alt="avatar"
               />
             </div>
-            <div className="textbox flex flex-col items-center gap-6">
+            <div className="textbox flex flex-col items-center gap-6 relative">
               <input
                 {...formik.getFieldProps("password")}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className={styles.textbox}
                 placeholder="Password"
               />
+              <span
+                className="absolute right-12 top-1/4 transform -translate-y-1/4 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
               <button className={styles.btn} type="submit">
                 Sign in
               </button>
